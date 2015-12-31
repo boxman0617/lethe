@@ -49,6 +49,11 @@
           <argument>
             <kind>1</kind>
             <string>draw_hearts_row(spr_heart,bar_length,lethe.life,lethe.max_life,20,10,1,1);
+
+var textX = room_width - 200;
+var textY = 20;
+draw_text(textX, textY, "Level: " + string(GAME.level));
+draw_text(textX, textY + 24, "Killed: " + string(GAME.killed) + "/" + string(GAME.created));
 </string>
           </argument>
         </arguments>

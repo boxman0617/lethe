@@ -44,10 +44,35 @@ switchRandMin = 10;
 switchRandMax = 51;
 switchAt = round(random_range(switchRandMin, switchRandMax));
 distanceThreshold = 100;
+canBeDamaged = true;
+flashCounter = 0;
 
 mspeed = 3;
 
 pause = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>speed = 0;
 </string>
           </argument>
         </arguments>
@@ -71,6 +96,15 @@ pause = false;
           <argument>
             <kind>1</kind>
             <string>pause = false;
+canBeDamaged = true;
+flashCounter = 0;
+
+with(my_head) {
+    image_alpha = 1.0;
+}
+with(my_body) {
+    image_alpha = 1.0;
+}
 </string>
           </argument>
         </arguments>
@@ -101,6 +135,8 @@ pause = false;
         instance_destroy();
     }
     instance_destroy();
+    
+    GAME.killed++;
 }
 </string>
           </argument>
@@ -176,6 +212,27 @@ pause = false;
             speed = 0;
         }
     }
+}
+
+if(canBeDamaged == false) {
+    if(flashCounter mod 2 == 0) {
+        with(my_head) {
+            if(image_alpha == 1.0) {
+                image_alpha = 0.3;
+            } else {
+                image_alpha = 1.0;
+            }
+        }
+        with(my_body) {
+            if(image_alpha == 1.0) {
+                image_alpha = 0.3;
+            } else {
+                image_alpha = 1.0;
+            }
+        }
+    }
+    
+    flashCounter++;
 }
 </string>
           </argument>
