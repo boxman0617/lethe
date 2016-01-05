@@ -3,8 +3,18 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
-  <sounds name="sound"/>
+  <NewExtensions>
+    <extension index="0">extensions\Transition System</extension>
+  </NewExtensions>
+  <sounds name="sound">
+    <sounds name="music">
+      <sound>sound\ms_intro_hallways</sound>
+    </sounds>
+    <sounds name="sfx">
+      <sound>sound\sfx_door_close</sound>
+      <sound>sound\sfx_light_off</sound>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprites name="lethe">
       <sprites name="still">
@@ -28,15 +38,19 @@
       <sprites name="moving">
         <sprites name="down">
           <sprite>sprites\lethe_moving_body_down</sprite>
+          <sprite>sprites\spr_LMD</sprite>
         </sprites>
         <sprites name="up">
           <sprite>sprites\lethe_moving_body_up</sprite>
+          <sprite>sprites\spr_LMU</sprite>
         </sprites>
         <sprites name="left">
           <sprite>sprites\lethe_moving_body_left</sprite>
+          <sprite>sprites\spr_LML</sprite>
         </sprites>
         <sprites name="right">
           <sprite>sprites\lethe_moving_body_right</sprite>
+          <sprite>sprites\spr_LMR</sprite>
         </sprites>
       </sprites>
       <sprites name="attack">
@@ -46,8 +60,9 @@
             <sprite>sprites\attack_stick_down_still</sprite>
           </sprites>
           <sprites name="up">
-            <sprite>sprites\attack_stick_up</sprite>
+            <sprite>sprites\attack_stick_up_OLD</sprite>
             <sprite>sprites\attack_stick_up_still</sprite>
+            <sprite>sprites\attack_stick_up</sprite>
           </sprites>
           <sprites name="left">
             <sprite>sprites\attack_stick_left_still</sprite>
@@ -68,6 +83,10 @@
     </sprites>
     <sprites name="game">
       <sprite>sprites\spr_wall</sprite>
+      <sprite>sprites\spt_wall_half</sprite>
+      <sprite>sprites\spr_transition</sprite>
+      <sprite>sprites\spr_event_trigger</sprite>
+      <sprite>sprites\spr_light</sprite>
     </sprites>
     <sprites name="enemies">
       <sprites name="boxthing">
@@ -80,14 +99,17 @@
         </sprites>
       </sprites>
     </sprites>
+    <sprites name="expressions">
+      <sprite>sprites\spr_question</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
-    <background>background\tile_floor</background>
-    <background>background\tile_walls</background>
+    <background>background\background6</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\draw_hearts_row.gml</script>
+    <script>scripts\room_goto_transition.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="game_objs">
@@ -97,17 +119,17 @@
     </objects>
     <objects name="player">
       <object>objects\lethe</object>
-      <objects name="parts">
-        <object>objects\lethe_head</object>
-        <object>objects\lethe_body</object>
-      </objects>
       <objects name="weapons">
         <object>objects\stick</object>
         <object>objects\parent_weapon</object>
       </objects>
+      <objects name="expressions">
+        <object>objects\exp_question</object>
+      </objects>
     </objects>
     <objects name="room">
       <object>objects\obj_wall</object>
+      <object>objects\obj_door_wall</object>
     </objects>
     <objects name="enemies">
       <objects name="boxthing">
@@ -119,10 +141,56 @@
       </objects>
       <object>objects\enemy_parent</object>
     </objects>
+    <objects name="transitions">
+      <objects name="regular">
+        <object>objects\warp</object>
+      </objects>
+    </objects>
+    <objects name="story">
+      <objects name="intro">
+        <object>objects\sty_light_1</object>
+        <object>objects\sty_light_2</object>
+        <object>objects\sty_light_3</object>
+        <object>objects\sty_light_last</object>
+        <object>objects\sty_light</object>
+        <object>objects\sty_intro_darkness</object>
+        <object>objects\object23</object>
+        <object>objects\parent_light</object>
+        <object>objects\object24</object>
+        <object>objects\sty_lights_off</object>
+        <object>objects\sty_start_lights_off</object>
+      </objects>
+    </objects>
+    <object>objects\sys_transition</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <rooms name="into">
+      <rooms name="hallways">
+        <room>rooms\hallway_1</room>
+        <room>rooms\hallway_2</room>
+        <room>rooms\hallway_3</room>
+        <room>rooms\hallway_last</room>
+      </rooms>
+    </rooms>
   </rooms>
+  <constants number="16">
+    <constant name="TRANS_FADE_COLOR">"TRANS_FADE_COLOR"</constant>
+    <constant name="TRANS_CROSS_FADE">"TRANS_CROSS_FADE"</constant>
+    <constant name="TRANS_SLIDE_LEFT">"TRANS_SLIDE_LEFT"</constant>
+    <constant name="TRANS_SLIDE_RIGHT">"TRANS_SLIDE_RIGHT"</constant>
+    <constant name="TRANS_SLIDE_UP">"TRANS_SLIDE_UP"</constant>
+    <constant name="TRANS_SLIDE_DOWN">"TRANS_SLIDE_DOWN"</constant>
+    <constant name="TRANS_PUSH_LEFT">"TRANS_PUSH_LEFT"</constant>
+    <constant name="TRANS_PUSH_RIGHT">"TRANS_PUSH_RIGHT"</constant>
+    <constant name="TRANS_PUSH_UP">"TRANS_PUSH_UP"</constant>
+    <constant name="TRANS_PUSH_DOWN">"TRANS_PUSH_DOWN"</constant>
+    <constant name="TRANS_MINIMIZE">"TRANS_MINIMIZE"</constant>
+    <constant name="TRANS_MAXIMIZE">"TRANS_MAXIMIZE"</constant>
+    <constant name="DIR_LEFT">4</constant>
+    <constant name="DIR_RIGHT">0</constant>
+    <constant name="DIR_UP">2</constant>
+    <constant name="DIR_DOWN">6</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>

@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>max_life = 5;
-life = 5;
+            <string>max_life = 2;
+life = 2;
 
 my_head = instance_create(x, y, boxthing_head);
 my_head.parent_id = id;

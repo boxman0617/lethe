@@ -25,48 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>level = 1;
-created = 0;
-killed = 0;
+            <string>music = ms_intro_hallways;
 
-difficulty = power(2, level);
-created = difficulty;
-
-for(var i = 0; i &lt; difficulty; i++) {
-    instance_create(random_range(100, room_width - 100), random_range(100, room_height - 100), boxthing);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(killed &gt;= created) {
-    difficulty = power(2, level);
-    level++;
-    
-    for(var i = 0; i &lt; difficulty; i++) {
-        instance_create(random_range(100, room_width - 100), random_range(100, room_height - 100), boxthing);
-    }
-    killed = 0;
-    created = difficulty;
-}
+var m = audio_play_sound(music, 0, true);
+audio_sound_gain(m, 0, 0);
+audio_sound_gain(m, 0.5, 5000);
 </string>
           </argument>
         </arguments>
